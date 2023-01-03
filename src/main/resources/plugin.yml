@@ -1,0 +1,6 @@
+name: Config
+version: '${project.version}'
+main: test.carrot.config.Config
+api-version: 1.17
+authors: [ carrotw ]
+description: none
