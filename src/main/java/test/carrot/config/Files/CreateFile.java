@@ -10,16 +10,19 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
 
-public class ConfigFile {
+public class CreateFile {
 
     private final Config plugin;
     private FileConfiguration dataConfig;
     private File configFile = null;
+    private final String fileName;
 
-    private final String fileName = "data.yml";
+    // Cuando se crea un archivo, se requiere que este mismo archivo se encuentre en el resource
+    // del plugin
 
-    public ConfigFile(Config plugin) {
+    public CreateFile(Config plugin, String file) {
         this.plugin = plugin;
+        fileName = file;
         saveDefaultConfig();
     }
 
@@ -53,9 +56,9 @@ public class ConfigFile {
         if (!this.configFile.exists()) this.plugin.saveResource(fileName, false);
     }
 
-    public void setConfig(Player target, String id, String value){
+    public void setConfig(String id, String value){
         if (this.dataConfig == null) reloadConfig();
-        this.dataConfig.set(target.getName() + "." + id, value);
+        this.dataConfig.set(id, value);
         this.saveConfig();
     }
 }

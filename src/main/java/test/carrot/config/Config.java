@@ -1,13 +1,10 @@
 package test.carrot.config;
 
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import test.carrot.config.Events.BreakDiamonds;
-import test.carrot.config.Files.ConfigFile;
+import test.carrot.config.Utils.ConfigData;
 
-public final class Config extends JavaPlugin implements Listener {
-
-    public ConfigFile config;
+public final class Config extends JavaPlugin {
 
     private static Config plugin;
 
@@ -19,6 +16,7 @@ public final class Config extends JavaPlugin implements Listener {
     public void onEnable() {
         plugin = this;
         this.getServer().getPluginManager().registerEvents(new BreakDiamonds(), this);
+        ConfigData.setConfig("enable", "si");
     }
 
     @Override
